@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="container nav-nav">
+    <a class="navbar-brand">Social Media App</a>
+    <ul class="nav">
+      <li *ngIf="!isAuthenticated()" class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!isAuthenticated()" class="nav-item">
+        <a class="nav-link" routerLink="/signup">Sign Up</a>
+      </li>
+      <li *ngIf="isAuthenticated()" class="nav-item">
+        <a class="nav-link" routerLink="/posts">Posts</a>
+      </li>
+      <li *ngIf="isAuthenticated()" class="nav-item">
+        <a class="nav-link" routerLink="/user-posts">My Posts</a>
+      </li>
+      <li *ngIf="isAuthenticated()" class="nav-item">
+        <a class="nav-link" routerLink="/add-post">Add Post</a>
+      </li>
+      <li *ngIf="isAuthenticated()" class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>

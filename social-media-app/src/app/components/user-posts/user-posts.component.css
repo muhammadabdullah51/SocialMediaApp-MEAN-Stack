@@ -1,0 +1,45 @@
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.posts-container h2 {
+  text-align: center;
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.post h3 {
+  margin-top: 0;
+}
+
+.post small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+.username{
+  display: flex;
+  justify-content: space-between;
+}
+.username button{
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  transition: .3s all;
+}
+.username button:hover{
+  font-size: 25px;
+}

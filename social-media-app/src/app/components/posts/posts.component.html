@@ -1,0 +1,113 @@
+
+<div class="posts-container">
+  <h2>All Posts</h2>
+  <div *ngFor="let post of posts" class="post">
+    <div class="username">
+      <small>Posted by {{ post.user.username }}</small>
+      <button *ngIf="isPostOwner(post)" (click)="openEditModal(post)">...</button>
+    </div>
+    <h3>{{ post.title }}</h3>
+    <img [src]="'http://localhost:3000/' + post.image" alt="Post Image" />
+    <!-- <small>{{ post.user.username }} <b>{{ post.description }}</b></small>  -->
+
+
+
+
+
+
+    <div class="post-actions">
+      <button (click)="toggleLike(post._id)" class="like-button">
+        <span>{{ hasLiked(post) ? '❤️' : '🤍' }}</span>
+      </button>
+      <span>{{ post.likes.length }} Likes</span>
+    </div>
+
+    <div class="post-content">
+      <small>{{ post.user.username }}: <b>{{ post.description }}</b></small>
+    </div>
+
+    <div class="post-comments">
+      <form (submit)="commentPost(post._id, commentInput.value); commentInput.value='';">
+        <input #commentInput placeholder="Add a comment" required class="comment-input" />
+        <button type="submit" class="comment-button">Post</button>
+      </form>
+      <div *ngIf="post.comments.length > 0" class="comments-list">
+        <ul>
+          <li *ngFor="let comment of post.comments">
+            <strong>{{ comment.user.username }}:</strong> {{ comment.text }}
+            <button class="comment-button" (click)="showReplyInput(comment._id)">Reply</button>
+            <div *ngIf="comment.showReply">
+              <form (submit)="replyComment(post._id, comment._id, replyInput.value); replyInput.value='';">
+                <input #replyInput placeholder="Add a reply" required class="comment-input" />
+                <button type="submit" class="comment-button">Reply</button>
+              </form>
+            </div>
+            <ul *ngIf="comment.replies.length > 0">
+              <li *ngFor="let reply of comment.replies">
+                <strong>{{ reply.user.username }}:</strong> {{ reply.text }}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    
+  </div>
+  
+
+  <app-edit-post-modal *ngIf="selectedPost" [post]="selectedPost" (postUpdated)="closeEditModal()" (postDeleted)="closeEditModal()" (close)="closeEditModal()"></app-edit-post-modal>
+</div>
+
+
+<!-- <div class="posts-container">
+  <h2>All Posts</h2>
+  <div *ngFor="let post of posts" class="post">
+    <div class="username">
+      <small>Posted by {{ post.user.username }}</small>
+      <button *ngIf="isPostOwner(post)" (click)="openEditModal(post)">...</button>
+    </div>
+    <h3>{{ post.title }}</h3>
+    <img [src]="'http://localhost:3000/' + post.image" alt="Post Image" class="post-image" />
+
+    <div class="post-actions">
+      <button (click)="toggleLike(post._id)" class="like-button">
+        <span>{{ hasLiked(post) ? '❤️' : '🤍' }}</span>
+      </button>
+      <span>{{ post.likes.length }} Likes</span>
+    </div>
+
+    <div class="post-content">
+      <small>{{ post.user.username }}: <b>{{ post.description }}</b></small>
+    </div>
+
+    <div class="post-comments">
+      <form (submit)="commentPost(post._id, commentInput.value); commentInput.value='';">
+        <input #commentInput placeholder="Add a comment" required class="comment-input" />
+        <button type="submit" class="comment-button">Post</button>
+      </form>
+      <div *ngIf="post.comments.length > 0" class="comments-list">
+        <ul>
+          <li *ngFor="let comment of post.comments">
+            <strong>{{ comment.user.username }}:</strong> {{ comment.text }}
+            <button (click)="showReplyInput(comment._id)">Reply</button>
+            <div *ngIf="comment.showReply">
+              <form (submit)="replyComment(post._id, comment._id, replyInput.value); replyInput.value='';">
+                <input #replyInput placeholder="Add a reply" required class="comment-input" />
+                <button type="submit" class="comment-button">Reply</button>
+              </form>
+            </div>
+            <ul *ngIf="comment.replies.length > 0">
+              <li *ngFor="let reply of comment.replies">
+                <strong>{{ reply.user.username }}:</strong> {{ reply.text }}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <app-edit-post-modal *ngIf="selectedPost" [post]="selectedPost" (postUpdated)="closeEditModal()" (postDeleted)="closeEditModal()" (close)="closeEditModal()"></app-edit-post-modal>
+</div> -->

@@ -1,0 +1,22 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Edit Post</h2>
+    <button class="close-button" (click)="closeModal()">X</button>
+    <form (submit)="updatePost()">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" [(ngModel)]="title" name="title" required />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="description" name="description" required></textarea>
+      </div>
+      <div>
+        <label for="image">Image</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+      <button type="submit">Update</button>
+      <button type="button" (click)="deletePost()">Delete</button>
+    </form>
+  </div>
+</div>
